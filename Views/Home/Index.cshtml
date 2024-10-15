@@ -1,0 +1,45 @@
+﻿@{
+    ViewData["Title"] = "Home Page";
+}
+
+<div class="text-center">
+    <h1 class="display-4">Welcome</h1>
+    <p>Learn about <a href="https://learn.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
+</div>
+@if (User.Identity.IsAuthenticated)
+{
+    <li class="nav-item">
+        <a class="nav-link" href="/Profile">Perfil</a>
+    </li>
+
+    @if (User.IsInRole("Admin"))
+    {
+        <li class="nav-item">
+            <a class="nav-link" href="/Admin">Administración</a>
+        </li>
+    }
+
+    <li class="nav-item">
+        <a class="nav-link" href="/Identity/Account/Logout">Cerrar sesión</a>
+    </li>
+}
+else
+{
+    <li class="nav-item">
+        <a class="nav-link" href="/Identity/Account/Login">Iniciar sesión</a>
+    </li>
+    <li class="nav-item">
+        <a class="nav-link" href="/Identity/Account/Register">Registrarse</a>
+    </li>
+}
+
+
+@if (User.Identity.IsAuthenticated)
+{
+    <p>Bienvenido, @User.Identity.Name!</p>
+    <p>Email: @User.Claims.FirstOrDefault(c => c.Type == System.Security.Claims.ClaimTypes.Email)?.Value</p>
+}
+else
+{
+    <p>Usuario no autenticado. <a href="/Identity/Account/Login">Iniciar sesión</a></p>
+}
