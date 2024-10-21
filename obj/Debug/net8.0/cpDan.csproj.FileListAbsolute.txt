@@ -265,3 +265,4 @@ C:\University-Projects\Web Projects\cpDan\obj\Debug\net8.0\refint\cpDan.dll
 C:\University-Projects\Web Projects\cpDan\obj\Debug\net8.0\cpDan.pdb
 C:\University-Projects\Web Projects\cpDan\obj\Debug\net8.0\cpDan.genruntimeconfig.cache
 C:\University-Projects\Web Projects\cpDan\obj\Debug\net8.0\ref\cpDan.dll
+C:\University-Projects\Web Projects\cpDan\obj\Debug\net8.0\cpDan.sourcelink.json

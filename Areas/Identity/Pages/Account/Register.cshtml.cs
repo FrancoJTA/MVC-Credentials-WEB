@@ -97,6 +97,10 @@ namespace cpDan.Areas.Identity.Pages.Account
             [Display(Name = "Confirm password")]
             [Compare("Password", ErrorMessage = "The password and confirmation password do not match.")]
             public string ConfirmPassword { get; set; }
+            
+            // Nuevo campo para seleccionar si el usuario será admin
+            [Display(Name = "Register as Admin")]
+            public bool IsAdmin { get; set; }
         }
 
 
@@ -121,6 +125,11 @@ namespace cpDan.Areas.Identity.Pages.Account
                 if (result.Succeeded)
                 {
                     _logger.LogInformation("User created a new account with password.");
+                    
+                    if (Input.IsAdmin)
+                    {
+                        await _userManager.AddToRoleAsync(user, "Admin");
+                    }
 
                     var userId = await _userManager.GetUserIdAsync(user);
                     var code = await _userManager.GenerateEmailConfirmationTokenAsync(user);

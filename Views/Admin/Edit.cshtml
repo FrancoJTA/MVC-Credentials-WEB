@@ -1,0 +1,22 @@
+﻿@model Microsoft.AspNetCore.Identity.IdentityRole
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Editar</title>
+</head>
+<body>
+<div>
+    <h2>Editar Rol</h2>
+
+    <form method="post">
+        <div class="form-group">
+            <label for="roleName">Nombre del Rol</label>
+            <input type="text" class="form-control" id="roleName" name="Name" value="@Model.Name" required />
+            <input type="hidden" name="Id" value="@Model.Id" />
+        </div>
+        <button type="submit" class="btn btn-primary">Guardar</button>
+        <a href="@Url.Action("Index", "Admin")" class="btn btn-secondary">Cancelar</a>
+    </form>
+</div>
+</body>
+</html>

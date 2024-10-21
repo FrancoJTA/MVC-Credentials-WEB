@@ -1,0 +1,71 @@
+﻿@model IEnumerable<Microsoft.AspNetCore.Identity.IdentityUser>
+<!DOCTYPE html>
+
+<html>
+<head>
+    <title>title</title>
+</head>
+<body>
+<div>
+    <h2>Lista de Usuarios</h2>
+
+    <table class="table">
+        <thead>
+        <tr>
+            <th>Email</th>
+            <th>Rol Actual</th>
+            <th>Asignar Rol</th>
+        </tr>
+        </thead>
+        <tbody>
+        @foreach (var user in Model)
+        {
+        <tr>
+            <td>@user.Email</td>
+            <td>
+                @if (ViewBag.UserRoles[user.Id] != null && ViewBag.UserRoles[user.Id] != "")
+                {
+                @ViewBag.UserRoles[user.Id]
+                }
+                else
+                {
+                <span>No tiene rol</span>
+                }
+            </td>
+            <td>
+                <form asp-action="AssignRole" method="post">
+                    <input type="hidden" name="userId" value="@user.Id" />
+
+                    <!-- Mostrar roles dinámicamente desde la base de datos -->
+                    <select name="roleName" class="form-control">
+                        @if (ViewBag.UserRoles[user.Id] == null && ViewBag.UserRoles[user.Id] == "")
+                        {
+                            <option selected value=""></option>
+                        }
+                        else
+                        {
+                            <option value=""></option>
+                        }
+                        @foreach (var role in ViewBag.Roles)
+                        {
+                            if (ViewBag.UserRoles[user.Id] != null && ViewBag.UserRoles[user.Id] != "" && @ViewBag.UserRoles[user.Id]==@role.Name)
+                            {
+                                <option selected value="@role.Name">@role.Name</option>    
+                            }
+                            else
+                            {
+                                <option value="@role.Name">@role.Name</option>
+                            }
+                        }
+                    </select>
+
+                    <button type="submit" class="btn btn-primary">Asignar Rol</button>
+                </form>
+            </td>
+        </tr>
+        }
+        </tbody>
+    </table>
+</div>
+</body>
+</html>

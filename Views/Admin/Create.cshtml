@@ -1,0 +1,22 @@
+﻿
+<!DOCTYPE html>
+
+<html>
+<head>
+    <title>Crear</title>
+</head>
+<body>
+<div>
+    <h2>Crear Nuevo Rol</h2>
+
+    <form method="post">
+        <div class="form-group">
+            <label for="roleName">Nombre del Rol</label>
+            <input type="text" class="form-control" id="roleName" name="roleName" required />
+        </div>
+        <button type="submit" class="btn btn-primary">Crear</button>
+        <a href="@Url.Action("Index", "Admin")" class="btn btn-secondary">Cancelar</a>
+    </form>
+</div>
+</body>
+</html>

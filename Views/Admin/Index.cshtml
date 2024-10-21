@@ -1,0 +1,38 @@
+﻿@model IEnumerable<Microsoft.AspNetCore.Identity.IdentityRole>
+@{
+ViewData["Title"] = "Admin Dashboard";
+}
+
+<h1>Admin Dashboard</h1>
+
+<p>Bienvenido al área de administración. Solo los usuarios con el rol de administrador pueden acceder a esta sección.</p>
+<h2>Lista de Roles</h2>
+
+<table class="table">
+    <thead>
+    <tr>
+        <th>Nombre del Rol</th>
+        <th>Acciones</th>
+    </tr>
+    </thead>
+    <tbody>
+    @foreach (var role in Model)
+    {
+        <tr>
+            <td>@role.Name</td>
+            <td>
+                @if (role.Name != "Admin")
+                {
+                    <a href="@Url.Action("Edit", "Admin", new { id = role.Id })" class="btn btn-warning">Editar</a>
+
+                    <a href="@Url.Action("Delete", "Admin", new { id = role.Id })" class="btn btn-danger">Eliminar</a>
+                }
+            </td>
+        </tr>
+    }
+    </tbody>
+</table>
+
+<a href="@Url.Action("Create", "Admin")" class="btn btn-success">Crear nuevo rol</a>
+
+<a href="@Url.Action("ListUsers", "Admin")" class="btn btn-success">Gestionar Usuarios</a>
